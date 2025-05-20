@@ -19,11 +19,11 @@ namespace clientes.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<EnderecoDTO>> Listar(int id)
+        public ActionResult<List<EnderecoDTO>> GetEnderecos(int id)
         {
             try
             {
-                var Response = _service.Listar(id);
+                var Response = _service.GetEnderecos(id);
                 return Ok(Response); //200
             }
 
@@ -64,11 +64,11 @@ namespace clientes.Controllers
         }
 
         [HttpPost]
-        public ActionResult<EnderecoDTO> Adicionar(int id, [FromBody] CriarEnderecoDTO body)
+        public ActionResult<EnderecoDTO> PostEndereco(int id, [FromBody] CriarEnderecoDTO body)
         {
             try
             {
-                var Response = _service.Criar(id, body);
+                var Response = _service.PostEndereco(id, body);
                 return Ok(Response); //200
             }
             catch (NotFoundException C)
@@ -87,11 +87,11 @@ namespace clientes.Controllers
 
 
         [HttpDelete]
-        public ActionResult Delete(int id, int idEndereco)
+        public ActionResult DeleteEndereco(int id, int idEndereco)
         {
             try
             {
-                _service.Deletar(idEndereco);
+                _service.DeleteEndereco(idEndereco);
                 return NoContent(); 
             }
             catch (NotFoundException C)
@@ -109,11 +109,11 @@ namespace clientes.Controllers
         }
 
         [HttpPut]
-        public ActionResult<EnderecoDTO> Atualizar(int id, int idEndereco, [FromBody] CriarEnderecoDTO body)
+        public ActionResult<EnderecoDTO> PutEndereco(int id, int idEndereco, [FromBody] CriarEnderecoDTO body)
         {
             try
             {
-                var Response = _service.Atualizar(body, idEndereco);
+                var Response = _service.PutEndereco(body, idEndereco);
                 return Ok(Response); //200
             }
             catch (NotFoundException C)

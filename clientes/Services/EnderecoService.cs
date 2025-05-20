@@ -19,7 +19,7 @@ namespace clientes.Services
         }
 
 
-        public List<EnderecoDTO> Listar(int id)
+        public List<EnderecoDTO> GetEnderecos(int id)
         {
             List<EnderecoDTO> Response = new();
             var enderecos = _dbcontext.TbEnderecos.Where(e => e.Clienteid == id).ToList();
@@ -40,7 +40,7 @@ namespace clientes.Services
             return EnderecoParser.ToEnderecoDTO(endereco);
         }
 
-        public EnderecoDTO Criar(int idcliente, CriarEnderecoDTO dto)
+        public EnderecoDTO PostEndereco(int idcliente, CriarEnderecoDTO dto)
         {
             EnderecoValidation.ValidarCriarEndereco(dto);
 
@@ -55,7 +55,7 @@ namespace clientes.Services
 
         }
 
-        public void Deletar(int idEndereco)
+        public void DeleteEndereco(int idEndereco)
         {
             var endereco = _dbcontext.TbEnderecos.FirstOrDefault(e => e.Id == idEndereco);
             if (endereco == null)
@@ -67,7 +67,7 @@ namespace clientes.Services
             _dbcontext.SaveChanges();
         }
 
-        public EnderecoDTO Atualizar(CriarEnderecoDTO dto, int id)
+        public EnderecoDTO PutEndereco(CriarEnderecoDTO dto, int id)
         {
             EnderecoValidation.ValidarCriarEndereco(dto);
 
